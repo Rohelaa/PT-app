@@ -35,11 +35,26 @@ const CustomerList = () => {
     }, {
         Header: 'LastName',
         accessor: 'lastname'
-    }]
+    }, {
+        Header: 'Street Address',
+        accessor: 'streetaddress'
+    }, {
+        Header: 'Post Code',
+        accessor: 'postcode'
+    }, {
+        Header: 'City',
+        accessor: 'city'
+    }, {
+        Header: 'Email',
+        accessor: 'email'
+    }, {
+        Header: 'Phone',
+        accessor: 'phone'
+    }];
 
     return (
 
-        <ReactTable data={customers} columns={columns}/>
+        <ReactTable data={customers} columns={columns} filterable={true}/>
 
     );
 }
