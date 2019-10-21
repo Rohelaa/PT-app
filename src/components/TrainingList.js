@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+import moment from 'moment';
 
 const TrainingList = () => {
 
     const [trainings, setTrainings] = React.useState([]);
+
+    // const [training, setTraining] = React.useState({
+    //     date: '',
+    //     duration: '',
+    //     activity: ''
+    // })
 
     const fetchData = () => {
         fetch('https://customerrest.herokuapp.com/api/trainings')
@@ -15,6 +23,7 @@ const TrainingList = () => {
         fetchData()
     }, []);
 
+
     const columns = [{
         Header: 'Date',
         accessor: 'date',
@@ -22,12 +31,16 @@ const TrainingList = () => {
         Header: 'Duration',
         accessor: 'duration',
     }, {
-        Header: ''
+        Header: 'Activity',
+        accessor: 'activity'
+    }, {
+        Header: 'Customer',
+        accessor: 'links[2].href'
     }]
 
     return (
         <div>
-            
+            <ReactTable data={trainings} columns={columns} />
         </div>
     );
 };
