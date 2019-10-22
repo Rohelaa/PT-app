@@ -28,6 +28,7 @@ const EditCustomer = (props) => {
     }
 
     const handleChange = (event) => {
+        // esim. 'firstname': 'Make'
         setCustomer({...customer, [event.target.name]: event.target.value});
         console.log(customer);
     }
@@ -56,7 +57,7 @@ const EditCustomer = (props) => {
                     label="First name"
                     fullWidth
                     onChange={(e) => handleChange(e)} // ????
-                    value={customer.firstName}
+                    value={customer.firstname}
                     name="firstname"
 
                 />
@@ -67,7 +68,7 @@ const EditCustomer = (props) => {
                     label="Last name"
                     fullWidth
                     onChange={(e) => handleChange(e)}
-                    value={customer.lastName}
+                    value={customer.lastname}
                     name="lastname"
                 />
                 <TextField
@@ -77,7 +78,7 @@ const EditCustomer = (props) => {
                     label="Street address"
                     fullWidth
                     onChange={(e) => handleChange(e)}
-                    value={customer.streetAddress}
+                    value={customer.streetaddress}
                     name="streetaddress"
                 />
                 <TextField
@@ -87,7 +88,7 @@ const EditCustomer = (props) => {
                     label="Post Code"
                     fullWidth
                     onChange={(e) => handleChange(e)}
-                    value={customer.postCode}
+                    value={customer.postcode}
                     name="postcode"
                 />
                 <TextField
@@ -126,7 +127,7 @@ const EditCustomer = (props) => {
                     Cancel
                 </Button>
                 <Button onClick={editCustomer} color="primary">
-                    Add
+                    Submit
                 </Button>
                 </DialogActions>
             </Dialog>
