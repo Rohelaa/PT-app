@@ -24,6 +24,12 @@ const CustomerList = () => {
 
     }
 
+    const deleteCustomer = (link) => {
+        fetch(link, {method: 'DELETE',})
+        .then(response => fetchData())
+        .catch(error => console.error(error));
+    }
+
     useEffect(() => {
         fetchData();
     }, []
@@ -50,6 +56,13 @@ const CustomerList = () => {
     }, {
         Header: 'Phone',
         accessor: 'phone'
+    }, {
+        accessor: 'links[0].href',
+        
+        // Aaltosulkujen sisällä olevassa funktiokutsussa oltava vielä erillinen funktiokutsu
+        // Ilman sitä kaikki tiedot poistuvat, kun haetaan tietoa funktion fetchData avulla
+
+        Cell: ({value}) => <button onClick={() => deleteCustomer(value)}>Delete</button>
     }];
 
     return (
