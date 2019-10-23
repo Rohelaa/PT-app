@@ -1,20 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import AddCustomer from './AddCustomer';
+import { Button } from '@material-ui/core';
+import EditCustomer from './EditCustomer';
+import { Route, BrowserRouter, Link} from 'react-router-dom';
+
 
 const CustomerList = () => {
 
     const [customers, setCustomers] = useState([]);
-    const [customer, setCustomer] = useState({
-        id: '',
-        firstname: '',
-        lastname: '',
-        streetaddress: '',
-        postcode: '',
-        city: '',
-        email: '',
-        phone: ''
-    });
+    
     
     const fetchData = () => {
         fetch("https://customerrest.herokuapp.com/api/customers")
@@ -25,9 +21,30 @@ const CustomerList = () => {
     }
 
     const deleteCustomer = (link) => {
-        fetch(link, {method: 'DELETE',})
+        fetch(link, {method: 'DELETE'})
+    const saveCustomer = (newCustomer) => {
+        fetch("https://customerrest.herokuapp.com/api/customers",
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newCustomer)
+
+        })
         .then(response => fetchData())
         .catch(error => console.error(error));
+    }
+
+    const editCustomer = (customer, link) => {
+        fetch(link,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(customer)
+            });
     }
 
     useEffect(() => {
@@ -63,13 +80,24 @@ const CustomerList = () => {
         // Ilman sitä kaikki tiedot poistuvat, kun haetaan tietoa funktion fetchData avulla
 
         Cell: ({value}) => <button onClick={() => deleteCustomer(value)}>Delete</button>
+    }, {
+        accessor: 'links[0].href',
+        Cell: () =>
+            <BrowserRouter>
+                <div>
+                    <Link to="/trainings">Trainings</Link>
+                    <Route path="/trainings" component={}></Route>
+                </div>
+            </BrowserRouter>
     }];
 
     return (
-
-        <ReactTable data={customers} columns={columns} filterable={true}/>
-
+        <div>
+            <AddCustomer saveCustomer={saveCustomer} />
+            <ReactTable data={customers} columns={columns} filterable={true} />
+        </div>
     );
-}
- 
-export default CustomerList;
+
+    }}
+
+    export default CustomerList;
