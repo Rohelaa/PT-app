@@ -56,11 +56,6 @@ const CustomerList = () => {
             .then(res => fetchData());
     }
 
-    const fetchTrainingData = (link) => {
-        fetch(link)
-        .then(response => response.json())
-        .then(responseData => responseData.content);
-    }
 
     useEffect(() => {
         fetchData();
@@ -91,8 +86,12 @@ const CustomerList = () => {
     }, {
         Header: 'Trainings',
         accessor: 'links[2].href',
-        Cell: ({value}) => //console.log(value)
-        <CustomersTrainings fetchData={fetchTrainingData(value)} />
+
+        // ei tarvitse antaa propsina funktiota
+        // sen voi luoda erikseen komponentissa
+        // riittää pelkkä linkki, josta tietoa haetaan
+
+        Cell: ({value}) => <CustomersTrainings link={value} />
         
             // <BrowserRouter>
             //     <div>
