@@ -4,8 +4,8 @@ import 'react-table/react-table.css';
 import AddCustomer from './AddCustomer';
 import { Button } from '@material-ui/core';
 import EditCustomer from './EditCustomer';
-import { Route, BrowserRouter, Link} from 'react-router-dom';
-
+import { Route, Link, BrowserRouter, Switch } from 'react-router-dom';
+import CustomersTrainings from './CustomersTrainings';
 
 const CustomerList = () => {
 
@@ -36,7 +36,7 @@ const CustomerList = () => {
         .catch(error => console.error(error));
     }
 
-    const editCustomer = (customer, link) => {
+    const editCustomer = (link, customer) => {
         fetch(link,
             {
                 method: 'PUT',
@@ -44,8 +44,20 @@ const CustomerList = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(customer)
-            });
+            })
+            .then(response => fetchData())
+            .catch(error => console.error(error));
+            
     }
+
+    const deleteCustomer = (link) => {
+        fetch(link,
+            {
+                method: 'DELETE'
+            })
+            .then(res => fetchData());
+    }
+
 
     useEffect(() => {
         fetchData();
@@ -74,21 +86,32 @@ const CustomerList = () => {
         Header: 'Phone',
         accessor: 'phone'
     }, {
-        accessor: 'links[0].href',
+        Header: 'Trainings',
+        accessor: 'links[2].href',
+
+        // ei tarvitse antaa propsina funktiota
+        // sen voi luoda erikseen komponentissa
+        // riittää pelkkä linkki, josta tietoa haetaan
+
+        Cell: ({value}) => <CustomersTrainings link={value} />
         
+            // <BrowserRouter>
+            //     <div>
+            //         <Link to={value}>link</Link>{' '}
+            //         <Switch>
+                
+            //             <Route path={value} component={CustomersTrainings}></Route>
+            //         </Switch>                
+            //     </div>
+            // </BrowserRouter>
+        
+
+    }, {
+        accessor: 'links[0].href',
         // Aaltosulkujen sisällä olevassa funktiokutsussa oltava vielä erillinen funktiokutsu
         // Ilman sitä kaikki tiedot poistuvat, kun haetaan tietoa funktion fetchData avulla
 
-        Cell: ({value}) => <button onClick={() => deleteCustomer(value)}>Delete</button>
-    }, {
-        accessor: 'links[0].href',
-        Cell: () =>
-            <BrowserRouter>
-                <div>
-                    <Link to="/trainings">Trainings</Link>
-                    <Route path="/trainings" component={}></Route>
-                </div>
-            </BrowserRouter>
+        Cell: ({value}) => <div><EditCustomer link={value} editCustomer={editCustomer} /><Button onClick={() => deleteCustomer(value)}>Delete</Button></div>
     }];
 
     return (
