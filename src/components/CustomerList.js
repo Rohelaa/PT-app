@@ -20,8 +20,7 @@ const CustomerList = () => {
 
     }
 
-    const deleteCustomer = (link) => {
-        fetch(link, {method: 'DELETE'})
+   
     const saveCustomer = (newCustomer) => {
         fetch("https://customerrest.herokuapp.com/api/customers",
         {
@@ -121,6 +120,6 @@ const CustomerList = () => {
         </div>
     );
 
-    }}
+    }
 
     export default CustomerList;

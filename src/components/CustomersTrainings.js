@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AddTraining from './AddTraining';
 
 const CustomersTrainings = (props) => {
 
@@ -10,13 +11,20 @@ const CustomersTrainings = (props) => {
     })
 
     const fetchTrainings = () => {
-       fetch(props.link)
+        fetch(props.link)
        .then(response => response.json())
        .then(responseData => setTrainings(responseData.content));
     }
 
-    const addTrainingToCustomer = () => {
-
+    const addTrainingToCustomer = (newTraining) => {
+        fetch(props.link, 
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newTraining)
+            });
     }
 
     useEffect(() => {
@@ -31,7 +39,7 @@ const CustomersTrainings = (props) => {
         <div onMouseOver>
             <ul>
                 {trainingNames}
-                <p>Add training</p>
+                <AddTraining />
             </ul>
         </div>
      );
