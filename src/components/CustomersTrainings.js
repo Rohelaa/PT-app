@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AddTraining from './AddTraining';
 
 const CustomersTrainings = (props) => {
 
@@ -15,9 +16,7 @@ const CustomersTrainings = (props) => {
        .then(responseData => setTrainings(responseData.content));
     }
 
-    const addTrainingToCustomer = () => {
-
-    }
+    
 
     useEffect(() => {
         fetchTrainings();
@@ -28,10 +27,10 @@ const CustomersTrainings = (props) => {
     <li key={index}>{training.activity}</li>);
 
     return (
-        <div onMouseOver>
+        <div>
             <ul>
                 {trainingNames}
-                <p>Add training</p>
+                <AddTraining link={props.link} />
             </ul>
         </div>
      );
