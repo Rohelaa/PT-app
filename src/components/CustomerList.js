@@ -110,6 +110,7 @@ const CustomerList = () => {
         // Aaltosulkujen sisällä olevassa funktiokutsussa oltava vielä erillinen funktiokutsu
         // Ilman sitä kaikki tiedot poistuvat, kun haetaan tietoa funktion fetchData avulla
 
+       
         Cell: ({value}) => <div><EditCustomer link={value} editCustomer={editCustomer} /><Button onClick={() => deleteCustomer(value)}>Delete</Button></div>
     }];
 

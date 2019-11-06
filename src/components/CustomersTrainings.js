@@ -16,6 +16,7 @@ const CustomersTrainings = (props) => {
        .then(responseData => setTrainings(responseData.content));
     }
 
+<<<<<<< HEAD
     const addTrainingToCustomer = (newTraining) => {
         fetch(props.link, 
             {
@@ -26,6 +27,9 @@ const CustomersTrainings = (props) => {
                 body: JSON.stringify(newTraining)
             });
     }
+=======
+    
+>>>>>>> b9bbc0c3951f0bf63e2aae9e3a1dc892c189dc11
 
     useEffect(() => {
         fetchTrainings();
@@ -36,10 +40,14 @@ const CustomersTrainings = (props) => {
     <li key={index}>{training.activity}</li>);
 
     return (
-        <div onMouseOver>
+        <div>
             <ul>
                 {trainingNames}
+<<<<<<< HEAD
                 <AddTraining />
+=======
+                <AddTraining link={props.link} />
+>>>>>>> b9bbc0c3951f0bf63e2aae9e3a1dc892c189dc11
             </ul>
         </div>
      );
