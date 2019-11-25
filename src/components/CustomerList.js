@@ -20,6 +20,7 @@ const CustomerList = () => {
 
     }
 
+   
     const saveCustomer = (newCustomer) => {
         fetch("https://customerrest.herokuapp.com/api/customers",
         {
@@ -109,15 +110,20 @@ const CustomerList = () => {
 
     }, {
         accessor: 'links[0].href',
+        // Aaltosulkujen sisällä olevassa funktiokutsussa oltava vielä erillinen funktiokutsu
+        // Ilman sitä kaikki tiedot poistuvat, kun haetaan tietoa funktion fetchData avulla
+
+       
         Cell: ({value}) => <div><EditCustomer link={value} editCustomer={editCustomer} /><Button onClick={() => deleteCustomer(value)}>Delete</Button></div>
     }];
 
     return (
         <div>
             <AddCustomer saveCustomer={saveCustomer} />
-            <ReactTable data={customers} columns={columns} filterable={true}/>
+            <ReactTable data={customers} columns={columns} filterable={true} />
         </div>
     );
-}
- 
-export default CustomerList;
+
+    }
+
+    export default CustomerList;

@@ -43,6 +43,6 @@ const TrainingList = () => {
             <ReactTable data={trainings} columns={columns} />
         </div>
     );
-};
+}
 
 export default TrainingList;

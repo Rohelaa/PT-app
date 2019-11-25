@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -6,17 +5,17 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogTitle from '@material-ui/core/DialogTitle';
 import AddCircle from '@material-ui/icons/AddCircle';
 
-
 const AddTraining = (props) => {
-
+    
     const [open, setOpen] = React.useState(false);
     const [training, setTraining] = React.useState({
         date: '',
         duration: '',
-        activity: ''
+        activity: '',
+        content: []
     });
 
     const handleClickOpen = () => {
@@ -32,7 +31,7 @@ const AddTraining = (props) => {
     }
 
     const addTrainingToCustomer = () => {
-        props.AddTraining(training);
+        props.addTraining(training);
     }
   
     return (

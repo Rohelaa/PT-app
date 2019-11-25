@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import AddTraining from './AddTraining';
+import ShowTraining from "./ShowTraining";
 
 const CustomersTrainings = (props) => {
-
     const [trainings, setTrainings] = React.useState([]);
-    const [training, setTraining] = React.useState({
-        date: '',
-        duration: '',
-        activity: ''
-    })
+
+    // const [training, setTraining] = React.useState({
+    //     date: '',
+    //     duration: '',
+    //     activity: ''
+    // })
 
     const fetchTrainings = () => {
-       fetch(props.link)
+        fetch(props.link)
        .then(response => response.json())
+       //.then(resposen => console.log(props))
        .then(responseData => setTrainings(responseData.content));
     }
 
@@ -36,8 +38,13 @@ const CustomersTrainings = (props) => {
     }, []
     );
 
+    // käytetään komponenttia ShowTraining, koska halutaan saada harjoitus näkyviin siten että sitä 
+    // klikkaamalla avautuu dialog ikkuna
+    // Tästä näkyy harjoituksen tiedot ja lisäksi poistopainike
+
     const trainingNames = trainings.map((training, index) => 
-    <li key={index}>{training.activity}</li>);
+    <ShowTraining fetchTrainings={fetchTrainings} training={training} />);
+    //<li key={index}>{training.activity}</li>);
 
     return (
         <div>
