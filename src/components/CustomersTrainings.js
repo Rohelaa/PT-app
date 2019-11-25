@@ -16,6 +16,19 @@ const CustomersTrainings = (props) => {
        .then(responseData => setTrainings(responseData.content));
     }
 
+    const addTraining = (newTraining) => {
+        fetch(props.link,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newTraining)
+            })
+            .then(response => fetchTrainings())
+            .catch(error => console.error(error));
+    }
+
     
 
     useEffect(() => {
@@ -30,7 +43,7 @@ const CustomersTrainings = (props) => {
         <div>
             <ul>
                 {trainingNames}
-                <AddTraining link={props.link} />
+                <AddTraining addTraining={addTraining} />
             </ul>
         </div>
      );

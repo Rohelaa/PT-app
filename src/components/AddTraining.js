@@ -31,15 +31,8 @@ const AddTraining = (props) => {
         setTraining({...training, [event.target.name]: event.target.value});
     }
 
-    const addTrainingToCustomer = (newTraining) => {
-        fetch(props.link, 
-            {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(newTraining)   
-            });
+    const addTrainingToCustomer = () => {
+        props.AddTraining(training);
     }
   
     return (
@@ -86,7 +79,7 @@ const AddTraining = (props) => {
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={() => addTrainingToCustomer(training)} color="primary">
+            <Button onClick={addTrainingToCustomer} color="primary">
               Add
             </Button>
           </DialogActions>
