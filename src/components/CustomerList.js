@@ -49,11 +49,14 @@ const CustomerList = () => {
     }
 
     const deleteCustomer = (link) => {
-        fetch(link,
-            {
-                method: 'DELETE'
-            })
-            .then(res => fetchData());
+        if (window.confirm('Are you sure?')) {
+            fetch(link,
+                {
+                    method: 'DELETE'
+                })
+                .then(res => fetchData());
+        }
+        
     }
 
 
