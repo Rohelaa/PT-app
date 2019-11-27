@@ -21,6 +21,7 @@ const ShowTraining = (props) => {
     const handleClickOpen = () => {
         setOpen(true);
         console.log(props.training);
+        // console.log(props.training.links[0].href);
     };
 
     const handleClose = () => {
@@ -31,6 +32,7 @@ const ShowTraining = (props) => {
         fetch(props.training.links[0].href, {
             method: 'DELETE'
         })
+        .then(props.fetchTrainings)
         .catch(err => console.error(err));
         handleClose();
         
@@ -40,7 +42,7 @@ const ShowTraining = (props) => {
         <div>
             <p variant="outlined" color="primary" onClick={handleClickOpen}>
                 {/* näyttää harjoituksen nimen */}
-                {props.training.activity}
+                {training.activity}
             </p>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogContent>

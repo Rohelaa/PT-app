@@ -4,13 +4,14 @@ import ShowTraining from "./ShowTraining";
 
 const CustomersTrainings = (props) => {
     const [trainings, setTrainings] = React.useState([]);
-
+    
     // const [training, setTraining] = React.useState({
     //     date: '',
     //     duration: '',
     //     activity: ''
     // })
 
+    // props.link esim. "https://customerrest.herokuapp.com/api/customers/1/trainings"
     const fetchTrainings = () => {
         fetch(props.link)
        .then(response => response.json())
@@ -19,7 +20,7 @@ const CustomersTrainings = (props) => {
     }
 
     const addTraining = (newTraining) => {
-        fetch(props.link,
+        fetch('https://customerrest.herokuapp.com/api/trainings',
             {
                 method: 'POST',
                 headers: {
@@ -31,8 +32,20 @@ const CustomersTrainings = (props) => {
             .catch(error => console.error(error));
     }
 
-    
+    // const addTraining = (newTraining) => {
+    //     fetch(props.link.content,
+    //         {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify(newTraining)
+    //         })
+    //         .then(response => fetchTrainings())
+    //         .catch(error => console.error(error));
+    // }
 
+    
     useEffect(() => {
         fetchTrainings();
     }, []
@@ -50,7 +63,10 @@ const CustomersTrainings = (props) => {
         <div>
             <ul>
                 {trainingNames}
-                <AddTraining addTraining={addTraining} />
+
+                {/* Annetaan komponentille propsina sama attribuutti kuin CustomerTrainingille.
+                Propsi on olio, joka sisältää muuttujanimellä links[0].href linkin asiakkaaseen */}
+                <AddTraining customer={props.customer} addTraining={addTraining} />
             </ul>
         </div>
      );

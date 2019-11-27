@@ -15,7 +15,7 @@ const AddTraining = (props) => {
         date: '',
         duration: '',
         activity: '',
-        content: []
+        customer: props.customer.links[0].href
     });
 
     const handleClickOpen = () => {

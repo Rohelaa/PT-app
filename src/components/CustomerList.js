@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core';
 import EditCustomer from './EditCustomer';
 import { Route, Link, BrowserRouter, Switch } from 'react-router-dom';
 import CustomersTrainings from './CustomersTrainings';
+import Navigation from './Navigation';
 
 const CustomerList = () => {
 
@@ -94,8 +95,9 @@ const CustomerList = () => {
         // ei tarvitse antaa propsina funktiota
         // sen voi luoda erikseen komponentissa
         // riittää pelkkä linkki, josta tietoa haetaan
+        // {value} viittaa value nimiseen propsiin, näkyy react devtoolsissa
 
-        Cell: ({value}) => <CustomersTrainings link={value} />
+        Cell: ({value, original}) => <CustomersTrainings link={value} customer={original} />
         
             // <BrowserRouter>
             //     <div>
@@ -120,6 +122,7 @@ const CustomerList = () => {
     return (
         <div>
             <AddCustomer saveCustomer={saveCustomer} />
+            <Navigation />
             <ReactTable data={customers} columns={columns} filterable={true} />
         </div>
     );
