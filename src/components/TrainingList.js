@@ -14,9 +14,9 @@ const TrainingList = () => {
     // })
 
     const fetchData = () => {
-        fetch('https://customerrest.herokuapp.com/api/trainings')
+        fetch('https://customerrest.herokuapp.com/gettrainings')
         .then(res => res.json())
-        .then(resData => setTrainings(resData.content));
+        .then(resData => setTrainings(resData));
     }
 
     React.useEffect(() => {
@@ -27,16 +27,20 @@ const TrainingList = () => {
     const columns = [{
         Header: 'Date',
         accessor: 'date',
+        // parametrin nimellä ei tässä tapauksessa merkitystä
+        //Cell: ({value}) => moment(value).format('MMMM Do YYYY, h:mm:ss a')
+        
     }, {
         Header: 'Duration',
         accessor: 'duration',
     }, {
         Header: 'Activity',
-        accessor: 'activity'
+        accessor: 'activity',
     }, {
         Header: 'Customer',
-        accessor: 'links[2].href'
-    }]
+        accessor: 'customer',
+       // Cell: ({value}) => console.log(value)
+    }];
 
     return (
         <div>
