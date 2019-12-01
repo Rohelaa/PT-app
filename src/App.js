@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import CustomerList from './components/CustomerList';
-import TrainingList from './components/TrainingList';
-import TrainingCalendar from './components/TrainingCalendar';
+import Navigation from './components/Navigation';
 
 
 function App() {
   return (
-    <TrainingCalendar />
+    <Navigation />
   );
 }
 

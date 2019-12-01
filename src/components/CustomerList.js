@@ -17,8 +17,6 @@ const CustomerList = () => {
         fetch("https://customerrest.herokuapp.com/api/customers")
         .then(res => res.json())
         .then(resData => setCustomers(resData.content));
-        
-
     }
 
    
@@ -99,17 +97,6 @@ const CustomerList = () => {
 
         Cell: ({value, original}) => <CustomersTrainings link={value} customer={original} />
         
-            // <BrowserRouter>
-            //     <div>
-            //         <Link to={value}>link</Link>{' '}
-            //         <Switch>
-                
-            //             <Route path={value} component={CustomersTrainings}></Route>
-            //         </Switch>                
-            //     </div>
-            // </BrowserRouter>
-        
-
     }, {
         accessor: 'links[0].href',
         // Aaltosulkujen sisällä olevassa funktiokutsussa oltava vielä erillinen funktiokutsu
@@ -122,7 +109,6 @@ const CustomerList = () => {
     return (
         <div>
             <AddCustomer saveCustomer={saveCustomer} />
-            <Navigation />
             <ReactTable data={customers} columns={columns} filterable={true} />
         </div>
     );

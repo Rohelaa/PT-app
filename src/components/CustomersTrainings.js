@@ -54,9 +54,9 @@ const CustomersTrainings = (props) => {
     // käytetään komponenttia ShowTraining, koska halutaan saada harjoitus näkyviin siten että sitä 
     // klikkaamalla avautuu dialog ikkuna
     // Tästä näkyy harjoituksen tiedot ja lisäksi poistopainike
+    // oltava key attribuutti. Ilman sitä console valittaa
 
-    const trainingNames = trainings.map((training, index) => 
-    <ShowTraining fetchTrainings={fetchTrainings} training={training} />);
+    const trainingNames = trainings.map((training, index) => <ShowTraining key={index} fetchTrainings={fetchTrainings} training={training} />);
     //<li key={index}>{training.activity}</li>);
 
     return (
