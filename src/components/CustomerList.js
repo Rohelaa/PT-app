@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import AddCustomer from './AddCustomer';
-import { Button } from '@material-ui/core';
+import { Button, AppBar } from '@material-ui/core';
 import EditCustomer from './EditCustomer';
 import { Route, Link, BrowserRouter, Switch } from 'react-router-dom';
 import CustomersTrainings from './CustomersTrainings';
 import Navigation from './Navigation';
+import NavigationBar from "./AppBar";
 
 const CustomerList = () => {
 
@@ -103,11 +104,12 @@ const CustomerList = () => {
         // Ilman sitä kaikki tiedot poistuvat, kun haetaan tietoa funktion fetchData avulla
 
        
-        Cell: ({value}) => <div><EditCustomer link={value} editCustomer={editCustomer} /><Button onClick={() => deleteCustomer(value)}>Delete</Button></div>
+        Cell: ({value, original}) => <div><EditCustomer link={value} editCustomer={editCustomer} customer={original}/><Button onClick={() => deleteCustomer(value)}>Delete</Button></div>
     }];
 
     return (
         <div>
+            <NavigationBar />
             <AddCustomer saveCustomer={saveCustomer} />
             <ReactTable data={customers} columns={columns} filterable={true} />
         </div>

@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddCircle from '@material-ui/icons/AddCircle';
+import moment from "moment";
 
 const AddTraining = (props) => {
     
@@ -30,6 +31,10 @@ const AddTraining = (props) => {
         setTraining({...training, [event.target.name]: event.target.value});
     }
 
+    const changeDateAndTime = (event) => {
+      setTraining({...training, date: moment(event.target.value).toISOString()});
+    }
+
     const addTrainingToCustomer = () => {
         props.addTraining(training);
     }
@@ -48,10 +53,10 @@ const AddTraining = (props) => {
               id="name"
               name="date"
               label="Date"
-              type="date"
+              type="datetime-local"
               fullWidth
               value={training.date}
-              onChange={handleChange}
+              onChange={changeDateAndTime}
             />
             <TextField
               margin="dense"

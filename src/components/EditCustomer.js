@@ -10,17 +10,18 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 const EditCustomer = (props) => {
     const [open, setOpen] = React.useState(false);
     const [customer, setCustomer] = React.useState({
-        firstname: '',
-        lastname: '',
-        streetaddress: '',
-        postcode: '',
-        city: '',
-        email: '',
-        phone: ''
+        firstname: props.customer.firstname,
+        lastname: props.customer.lastname,
+        streetaddress: props.customer.streetaddress,
+        postcode: props.customer.postcode,
+        city: props.customer.city,
+        email: props.customer.email,
+        phone: props.customer.phone
     })
 
     const handleClickOpen = () => {
         setOpen(true);
+        //console.log(props.customer)
     }
 
     const handleClose = () => {
