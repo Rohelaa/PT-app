@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import CustomerList from './components/CustomerList';
 import Navigation from './components/Navigation';
 
 

@@ -25,15 +25,16 @@ const AddTraining = (props) => {
   
     const handleClose = () => {
       setOpen(false);
+      console.log(moment(training.date).toISOString());
     };
 
     const handleChange = (event) => {
         setTraining({...training, [event.target.name]: event.target.value});
     }
 
-    const changeDateAndTime = (event) => {
-      setTraining({...training, date: moment(event.target.value).toISOString()});
-    }
+    // const changeDateAndTime = event => {
+    //    setTraining({...training, [training.date]: moment(event.target.value).toISOString()});
+    // }
 
     const addTrainingToCustomer = () => {
         props.addTraining(training);
@@ -53,10 +54,10 @@ const AddTraining = (props) => {
               id="name"
               name="date"
               label="Date"
-              type="datetime-local"
+              type="date"
               fullWidth
               value={training.date}
-              onChange={changeDateAndTime}
+              onChange={handleChange}
             />
             <TextField
               margin="dense"

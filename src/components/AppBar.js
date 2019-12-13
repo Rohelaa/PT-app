@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AppBarMenu from "./AppBarMenu";
+import AddCustomer from './AddCustomer';
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
 
     const classes = useStyles();
 
@@ -31,9 +34,11 @@ export default function ButtonAppBar() {
                     <AppBarMenu />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                    News
+                      <AddCustomer saveCustomer={props.saveCustomer} />
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    
+                    {/* <Navigator /> */}
+                    {/* <Button color="inherit">Login</Button> */}
                 </Toolbar>
             </AppBar>
         </div>

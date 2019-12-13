@@ -6,8 +6,8 @@ import { Button, AppBar } from '@material-ui/core';
 import EditCustomer from './EditCustomer';
 import { Route, Link, BrowserRouter, Switch } from 'react-router-dom';
 import CustomersTrainings from './CustomersTrainings';
-import Navigation from './Navigation';
 import NavigationBar from "./AppBar";
+import Navigation from './Navigation';
 
 const CustomerList = () => {
 
@@ -109,8 +109,8 @@ const CustomerList = () => {
 
     return (
         <div>
-            <NavigationBar />
-            <AddCustomer saveCustomer={saveCustomer} />
+            <NavigationBar saveCustomer={saveCustomer} />
+            {/* <AddCustomer saveCustomer={saveCustomer} /> */}
             <ReactTable data={customers} columns={columns} filterable={true} />
         </div>
     );

@@ -46,10 +46,10 @@ const AddCustomer = (props) => {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add a customer</DialogTitle>
                 <DialogContent>
-                <DialogContentText>
+                {/* <DialogContentText>
                     To subscribe to this website, please enter your email address here. We will send updates
                     occasionally.
-                </DialogContentText>
+                </DialogContentText> */}
                 <TextField
                     autoFocus
                     
